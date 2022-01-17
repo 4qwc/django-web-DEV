@@ -1,0 +1,55 @@
+{% extends 'company/base.html' %}
+{% load static %}
+
+{% block title %} login {% endblock title%}
+
+{% block content %}
+
+<center>
+
+
+	
+<!-- 	<img src="{% static 'image/toyota2022.jpg' %}" width="320"><br>
+ -->	<img src="{% static 'image/honda2022.jpg' %}" width="320"><br>
+
+		<h1> เข้าสู่ระบบ </h1>
+		 
+ 
+		{% if message %}  <!-- ถ้ามีข้อความเข้ามาจะทำงานใน if -->
+
+			<h3 style="color: green;">{{ message }}</h3>
+
+
+
+		{% else %} <!-- ถ้าไม่มีข้อความ จะทำงานภายใต้ else -->
+		<form method="POST">
+			{% csrf_token %}<!-- # คือระบบความปลอดภัย -->
+			   			   
+
+			    <div class="form-group">
+			      <label for="username">username:</label>
+			      <input type="text" class="form-control" id="username"  name="username">  
+			    </div><br>
+
+
+			   <!-- เปลี่ยน type = password -->
+			    <div class="form-group">
+			      <label for="password">Password:</label>
+			      <input type="password" class="form-control" id="password"  name="password"> 
+			    </div><br>
+ 
+			     
+
+			    <button type="submit" class="btn btn-primary">Login</button><br>
+
+		</form>
+
+		{% endif %}
+		<br>
+		
+ 		 
+
+</center>
+
+
+{% endblock content %}

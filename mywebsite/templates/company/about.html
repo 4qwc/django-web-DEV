@@ -1,0 +1,34 @@
+{% extends 'company/base.html' %}
+{% load static %}
+
+{% block title %} about {% endblock title%}
+
+{% block content %}
+
+<center>
+		<h1>เกี่ยวกับเรา</h1>
+		<h1>{{ time }}</h1>
+
+		<hr>
+		{% for c in car %}
+
+            <h3>{{c.name}}</h3>
+            <p>
+              รายละเอียด: {{c.price}} บาท<br>
+              ภาพ {{c.photo}} <br>
+               <br>
+            </p>
+            <hr>
+
+        {% endfor %}
+
+		<img src="https://149449856.v2.pressablecdn.com/wp-content/uploads/2017/11/Ecommerce-BTL-1024x724.jpg" width="650">
+
+		<p>
+			เว็บไซต์ของเราเป็นเว็บไซต์ที่มีสินค้าจำหน่าย ราคาถูก คุณภาพดี
+		</p>
+
+</center>
+
+
+{% endblock content %}

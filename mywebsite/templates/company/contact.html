@@ -1,0 +1,72 @@
+{% extends 'company/base.html' %}
+{% load static %}
+
+{% block title %} ติดต่อเรา {% endblock title%}
+
+{% block content %}
+
+<center>
+
+
+	
+<!-- 	<img src="{% static 'image/toyota2022.jpg' %}" width="320"><br>
+ -->	<img src="{% static 'image/honda2022.jpg' %}" width="320"><br>
+
+		<h1> ติดต่อเรา </h1>
+		 
+ 
+		{% if message %}  <!-- ถ้ามีข้อความเข้ามาจะทำงานใน if -->
+
+			<h3 style="color: green;">{{ message }}</h3>
+
+
+
+		{% else %} <!-- ถ้าไม่มีข้อความ จะทำงานภายใต้ else -->
+		<form method="POST">
+			{% csrf_token %}<!-- # คือระบบความปลอดภัย -->
+			   
+			   <!--  <div class="form-group">
+			      <label for="contact">เบอร์ติดต่อ:</label>
+			      <input type="text" class="form-control" id="contact"  name="contact">  
+			    </div><br> -->
+
+			    <div class="form-group">
+			      <label for="title">หัวข้อติดต่อ:</label>
+			      <input type="text" class="form-control" id="title"  name="title">  
+			    </div><br>
+
+
+			    <div class="form-group">
+			      <label for="email">อีเมล์:</label>
+			      <input type="text" class="form-control" id="email"  name="email"> 
+			    </div><br>
+
+
+			    <!-- <div class="form-group">
+			      <label for="newpassword">ยืนยันรหัสผ่าน:</label>
+			      <input type="text" class="form-control" id="newpassword"  name="newpassword"> 
+			    </div><br> -->
+
+
+
+			    <div class="form-group">
+			      <label for="detail">บันทึกรายละเอียด:</label>
+			      <textarea class="form-control" rows="5" id="detail" name="detail"></textarea>   
+			    </div><br>
+			     
+
+			    <button type="submit" class="btn btn-primary">ส่งข้อความ</button><br>
+
+		</form>
+
+		{% endif %}
+		<br>
+		
+ 		<p style="color: red;">
+			ฝ่ายบริการ ติดต่อ เวลาทำการ 09.00-22.00 น.(เวลาทำการ จันทร์-เสาร์ หยุดวันอาทิตย์)
+		</p>
+
+</center>
+
+
+{% endblock content %}
