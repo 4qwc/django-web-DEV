@@ -1,0 +1,24 @@
+setting.py 
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static", # BASE_DIR ตำแหน่งที่โปรเจคอยู่
+
+    #r'C:\Users\QWC\Desktop\Django\mywebsite\myweb\static\image'
+    r'C:\Users\SADA\Desktop\Django',#ใช้ในกรณีไฟล์ภาพอยู่ในโฟลเดอร์ Django ในหน้า Desktop
+    #r'C:\Users\QWC\Desktop\static\image',# ใช้ในกรณีสร้างโฟลเดอร์ static ในหน้า Desktop
+]
+
+--------------
+`การใช้งาน  ดึงข้อมูลจาก static file  มาใช้งานในหน้าเว็บ
+
+{% load static %}
+
+     <img src="{% static 'image/ICOM2300.jpg' %}" width="320">
+
+ ใช้สำหรับให้โหลดไฟล์ในเว็บไซต์เรา  -->
+<a target="_blank" href="{% static 'hello.py' %}">Download File</a><br>
+<a target="_blank" href="{% static 'set_TEMPLATES.txt' %}">Download File set_TEMPLATES</a><br>
+
+ <!-- -------------------- -->

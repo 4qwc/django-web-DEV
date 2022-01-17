@@ -1,0 +1,6 @@
+VS Code Extension
+
+-Flutter
+-Dart
+-Bracket Pair Colorizer
+-Material Icon Theme

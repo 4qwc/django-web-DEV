@@ -1,0 +1,13 @@
+Python Build Setting
+
+https://github.com/UncleEngineer/Sublime
+
+{
+ 	"cmd": ["C:/Python39/python.exe", "-u", "$file"],
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python",
+    "env":{"PYTHONIOENCODING":"utf8"}
+ }
+
+ให้ save ชื่อไฟล์  ตาม version ที่ติดตั้ง    Python39.sublime-build
+(ห้ามเปลี่ยนตำแหน่ง)

@@ -1,0 +1,25 @@
+แจ้งเตือนไปหาไลน์
+web_site
+token =  'KIkEeNfW20s0geXlrqLYj5N292dHQrkal4ZM6IWo3zI'
+
+https://pypi.org/project/songline/
+https://github.com/UncleEngineer/songline
+
+pip install songline
+
+from songline import Sendline
+m = Sendline(token)
+m.sendtext('Hello sakda')
+m.sticker(114,1)
+m.sendimage('https://www.flashfly.net/wp/wp-content/uploads/2021/10/review-iPhone-13-flashfly-750x375.jpg')
+
+
+
+------
+views.py
+from songline import Sendline # ส่งไลน์
+# ส่งไลน์
+	token =  'KIkEeNfW20s0geXlrqLYj5N292dHQrkal4ZM6IWo3zI'
+	m = Sendline(token)
+	m.sendtext('\nหัวข้อ:{}\nอีเมล์:{}\n>>> {}'.format(title,email,detail))
+		

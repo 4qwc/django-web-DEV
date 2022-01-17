@@ -1,0 +1,37 @@
+# สร้างระบบ Login
+
+from django.contrib.auth import authenticate, login
+
+def Login(request):
+	context = {}
+	if request.method == 'POST':
+		data = request.POST.copy()
+		username = data.get('username')
+		password = data.get('password')
+
+	return render(request, 'company/login.html', context)
+
+-------
+setting.py
+
+เพิ่ม >>>
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home-page'
+LOGOUT_REDIRECT_URL = 'login'
+
+urls.py #ที่อยู่ในที่เดียวกันกับ setting
+	path('login/', views.LoginView.as_view(template_name='company/login.html'),name='login'),
+    	path('logout/', views.LogoutView.as_view(template_name='company/logout.html'),name='logout'),
+
+
+
+base.html
+เพิ่ม--++++
+<!-- ระบบ login   -->  
+        {% if user.is_authenticated %}
+          &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none" href="#">| สวัสดี Admin</a>
+          &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none btn btn-danger" href="{% url 'logout' %}">Logout</a>
+
+        {% else %}
+            &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none btn btn-primary" href="{% url 'login' %}">Login</a>
+        {% endif %}

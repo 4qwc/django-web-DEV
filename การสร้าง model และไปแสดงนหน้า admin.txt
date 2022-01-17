@@ -1,0 +1,69 @@
+- วิธีการบันทึกข้อมูลจากฟอร์ม html เก็บลง model
+- ทำระบบล็อกอิน user
+- แยกประเภท user
+
+views.py
+def ContactUs(request):
+	context = {} # สร้างดิกชันนารี่เก็บข้อมูล]
+	if request.method == 'POST':
+		data = request.POST.copy()
+		title = data.get('title') # ดึงข้อมูลที่เป็น title ออกมา
+		email = data.get('email')
+		detail = data.get('detail')
+		print(title)
+		print(email)
+		print(detail)
+		print('----------------')
+
+		# ถ้าไม่กรอกข้อมูลให้ใส่ if ใน ฟังก์ชั่น 
+		if title == '' and email == '':
+			context['message'] = 'กรุณากรอกขัอความและอีเมล์ที่ต้องการติอต่อ'
+			return render(request, 'company/contact.html', context)
+ 		# ถ้า return ในนี้ทำงานแล้ว return ด้านล่างจะไม่ทำต่อ
+
+
+		# เมื่อได้ข้อมูลที่ได้มา ทำการ code บันทึกข้อมูล
+		new_record = ContactList()
+		new_record.title = title
+		new_record.email = email
+		new_record.detail = detail
+		new_record.save()
+
+		context['message'] = 'admin ได้รับข้อความแล้ว รอติดต่อกลับภายใน 24 ชั่วโมง'
+
+		# ส่งไลน์
+		token =  'KIkEeNfW20s0geXlrqLYj5N292dHQrkal4ZM6IWo3zI'
+		m = Sendline(token)
+		m.sendtext('\nหัวข้อ:{}\nอีเมล์:{}\n>>> {}'.format(title,email,detail))
+
+
+	return render(request, 'company/contact.html', context) # แนบ ข้อความใน context
+
+
+
+model.py
+# สร้างโมเดล
+class ContactList(models.Model):
+	title = models.CharField(max_length=200)
+	email = models.CharField(max_length=200)
+	detail = models.TextField(null=True, blank=True)
+	complete = models.BooleanField(default=False)
+
+
+	# เพิ่ม ฟังก์ชั่นนี้เพื่อให้ title แสดงผลในหน้าเว็บ หลังบ้าน
+	def __str__(self):
+		return self.title# สามารถใส่ + self.email ได้
+
+
+
+
+
+------
+admin.py
+from django.contrib import admin
+
+from .models import * 
+# Register your models here.
+
+admin.site.register(Product)
+admin.site.register(ContactList)# เพิ่ม model ใหม่อีกรายการ

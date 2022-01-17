@@ -1,0 +1,14 @@
+1.สร้างโฟลเดอร์  static เก็บ ไฟล์ bootstrap.min.ccs
+
+base.html
+{% load static %}
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}"
+
+
+
+setting.py  
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static", # BASE_DIR ตำแหน่งที่โปรเจคอยู่

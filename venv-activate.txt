@@ -1,0 +1,11 @@
+ติดตั้ง virtualenv
+pip install virtualenv
+python3 -m pip install virtualenv
+
+Activate
+.\venv\scripts\activate  // windows
+source ./venv/bin/activate # for mac
+
+-ทำการ cd เข้าไปที่ project ที่สร้างไว้
+-รัน server แล้วเข้า localhost:8000
+-python manage.py runserver

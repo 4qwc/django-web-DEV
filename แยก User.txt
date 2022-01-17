@@ -1,0 +1,50 @@
+# แยก User
+
+models.py
+---
+class Profile(models.Model):
+	user = models.OneToOneField(User, ondelete=models.CASCADE)
+	usertype = models.CharField(max_length=100, default='member')
+	point = models.IntegerField(default=0)
+
+	def __str__(self):
+		return self.user.username
+
+
+base.py
+
+ <!-- ระบบ login   -->  
+        {% if user.is_authenticated %} <!-- เมื่อมีการ login -->
+          &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none" href="#">| สวัสดีคุณ {{user.first_name}} {{user.last_name}} ({{user.profile.usertype}})</a>
+          &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none btn btn-danger" href="{% url 'logout' %}">Logout</a>
+
+        {% else %}
+            &nbsp;&nbsp;<a class="py-2 text-dark text-decoration-none btn btn-primary" href="{% url 'login' %}">Login</a>
+        {% endif %}
+
+
+##### แยกหน้าสำหรับ VIP ให้แสดงผลเห็นส่วนลด 50%
+home.html
+      {% if user.profile.usertype == 'vip' %} 
+          <h1 class="display-4 fw-normal">หมวดหมู่สินค้าโปรโมชั่นพิเศษ VIP! เท่านั้น</h1>
+          <p class="fs-5 text-muted">หากซื้อสินค้าวันนี้ได้รับส่วนลดทันที 50%</p>
+          <img src="{% static 'image/ICOM2300.jpg' %}" width="320">
+
+      {% elif user.profile.usertype == 'member' %}
+           <h1 class="display-4 fw-normal">หมวดหมู่สินค้าโปรโมชั่นพิเศษ!</h1>
+           <p class="fs-5 text-muted">หากซื้อสินค้าวันนี้ได้รับส่วนลดทันที 20%</p>
+           <img src="{% static 'image/toyota2022.jpg' %}" width="320"><br>
+      
+       {% elif user.profile.usertype == 'admin' %}
+          <h1 class="display-4 fw-normal">--- ADMIN PAGE ---</h1>
+          <img src="{% static 'image/honda2022.jpg' %}" width="320"><br>
+       
+      {% else %}
+          <h1 class="display-4 fw-normal">หมวดหมู่สินค้าโปรโมชั่นพิเศษ!</h1>
+          <p class="fs-5 text-muted">กรุณาลงชื่อเข้าใช้หรือสมัครสมาชิกเพื่อรับโปรโมชั่น</p>
+          
+          <h5>IPONE-13</h5>
+          <img src="{% static 'image/iPhone13.png' %}" width="320">
+          <br>
+
+      {% endif %}

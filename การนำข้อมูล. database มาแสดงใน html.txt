@@ -1,0 +1,44 @@
+การนำข้อมูล. database มาแสดงใน html EP.3
+
+
+--- models.py 
+
+class Product(models.Model):
+	title = models.CharField(max_length=200) #กำหนดตัวหนังสือ200ตัว
+	description = models.TextField(null=True, blank=True) #กำหนด ไม่กรอกข้อมูลก็ได้ ใส่ null=True, blank=True
+	price = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)  #กำหนดบรรจุได้10ตัว max_digits=10 คือจำนวนตัวเลข/decimal_places=2 คือ ทศนิยม 2 ตำแหน่ง
+	quantity = models.IntegerField(default=1,null=True,blank=True)# default=1 ค่าเริ่มต้นมีสินค้า 1
+	instock = models.BooleanField(default=True)
+
+	# เพิ่ม ฟังก์ชั่นนี้เพื่อให้ title แสดงผลในหน้าเว็บ
+	def __str__(self):
+		return self.title
+
+
+'''
+รัน 2 คำสั่งนี้ หากมีการแก้ไข models
+python manage.py makemigrations
+python manage.py migrate
+'''
+------------------------------------------------------------------
+---- views.py
+def Home(request):
+	allproduct = Product.objects.all() # เลือกทั้งหมกใน from Product
+	context = {'allproduct':allproduct}
+	return render(request, 'company/home.html', context)
+
+------------------------------------------------------------------
+
+----- html
+	{% for pd in allproduct %}
+
+           	 <h3>{{pd.title}}</h3>
+           	 <p>
+          	    รายละเอียด: {{pd.description}}<br>
+             	 ราคา {{pd.price}} บาท<br>
+             	 เหลือในสต็อก: {{pd.quantity}} เครื่อง<br>
+            	</p>
+            	<hr>
+
+        {% endfor %}
+-----------------------------------------------------------------

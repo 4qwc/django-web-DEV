@@ -1,0 +1,5 @@
+# การใช้งาน  Git activate venv
+Git-Bash [duplicate]
+
+ใช้-  source .venv/Scripts/activate
+เคลียหน้าจอ -   clear
