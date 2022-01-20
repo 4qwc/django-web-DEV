@@ -8,6 +8,21 @@ https://github.com/UncleEngineer/Sublime
     "selector": "source.python",
     "env":{"PYTHONIOENCODING":"utf8"}
  }
+ ------------
+ for Mac
+ {
+    "cmd": ["/usr/local/bin/python3.9", "-u", "$file"],
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "quiet": true
+}
+ ------------
+  มาจาก stackoverflow
+ {
+    "cmd": ["c:/Python32/python.exe", "-u", "$file"],
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python"
+}
+ ------------
 
 ให้ save ชื่อไฟล์  ตาม version ที่ติดตั้ง    Python39.sublime-build
 (ห้ามเปลี่ยนตำแหน่ง)
