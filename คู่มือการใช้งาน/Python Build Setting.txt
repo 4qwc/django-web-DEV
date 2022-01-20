@@ -9,9 +9,9 @@ https://github.com/UncleEngineer/Sublime
     "env":{"PYTHONIOENCODING":"utf8"}
  }
  ------------
- for Mac
- {
-    "cmd": ["/usr/local/bin/python3.9", "-u", "$file"],
+ Python 3.10 for Mac
+{
+    "cmd": ["/usr/local/bin/python3.10", "-u", "$file"],
     "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
     "quiet": true
 }
